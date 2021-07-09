@@ -68,6 +68,9 @@ class Validation
     {
         $data = array_merge($this->getRequired(), $this->data);
         foreach ($data as $key => $value) {
+            if (!isset($this->rules[$key])) {
+                continue;
+            }
             foreach ($this->rules[$key] as $rule) {
                 try {
                     $method = $this->getRuleMethod($rule);
